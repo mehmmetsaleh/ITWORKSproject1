@@ -1,6 +1,6 @@
 public class LibraryCase {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NotInStockException {
 		Storage libStorage = new Storage();
 
 		Book firstBook = new Book(1, "Harry Potter and the chamber of secrets", 159.9);
@@ -29,6 +29,13 @@ public class LibraryCase {
 		System.out.println("------------------------------------------------------------------------------");
 		libStorage.rentBook(firstBook);
 		libStorage.rentBook(secondBest);
+		try{
+			libStorage.rentBook(firstBook);
+		}
+		catch (NotInStockException e){
+			System.out.println("exception occurred!");
+		}
+
 
 		for (Book b : booksArray) {
 			System.out.println("name: " + b.getName() + ", amount: " + libStorage.getInStock(b));

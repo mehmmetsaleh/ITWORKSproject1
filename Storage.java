@@ -24,9 +24,9 @@ public class Storage {
 		}
 	}
 
-	public String rentBook(Book book) {
+	public String rentBook(Book book) throws NotInStockException{
 		if (!inStock.containsKey(book) || inStock.get(book) == 0) {
-			return null;
+			throw new NotInStockException("No copys of "+ book.getName()+ " left in stock!");
 		} else {
 			inStock.put(book, inStock.get(book) - 1);
 			return book.getName();
