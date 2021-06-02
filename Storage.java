@@ -24,8 +24,26 @@ public class Storage {
 		}
 	}
 
-	
+	public String rentBook(Book book) {
+		if (!inStock.containsKey(book) || inStock.get(book) == 0) {
+			return null;
+		} else {
+			inStock.put(book, inStock.get(book) - 1);
+			return book.getName();
+		}
+	}
 
+	public void returnBook(Book book) {
+		if (inStock.containsKey(book)) {
+			inStock.put(book, inStock.get(book) + 1);
+		}
+	}
 
-
+	public int getInStock(Book book) {
+		if (!inStock.containsKey(book)) {
+			return 0;
+		} else {
+			return inStock.get(book);
+		}
+	}
 }
